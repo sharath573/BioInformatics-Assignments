@@ -231,8 +231,14 @@ def fastq_to_fasta(file_name, new_name=None):
     :param new_name: a string
     :return: None
     """
-
+    with open('test_files/proper_fastq.fastq', 'r') as infile:
+        text = infile.read()
+        file = open('test_files/proper_fastq.fasta', 'w')
+        file.write(text)
+        file.close()
     return
+
+fastq_to_fasta('','')
 
 # Transcription and Translation
 def reverse_complement(dna):

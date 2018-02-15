@@ -77,7 +77,7 @@ def kmer_dict(s, k):
     my_dict = {}
     a = len(s)
     for x in range(0, a - k + 1):
-        my_dict[(s[x:x + k])]=1
+        my_dict[(s[x:x + k])] = 1
 
     return my_dict
 #print(kmer_dict('CTAGAAAAGGGGGG', 4))
@@ -136,15 +136,15 @@ def csv_list(file_name):
     :return: a list of lists
     """
     with open('test_files/sharath.fasta', 'r') as infile:
-        t = infile.readlines()
+        text = infile.readlines()
         list = []
-        for n in t:
-            c = n.split(',')
-            list.append(c)
+        for a in text:
+            char = a.split(',')
+            list.append(char)
 
     return list
 
-print(csv_list(''))
+#print(csv_list(''))
 
 def get_csv_column(file_name, column):
     """
@@ -154,14 +154,14 @@ def get_csv_column(file_name, column):
     :return: a list
     """
     with open('test_files/sharath.fasta', 'r') as infile:
-        t = infile.readlines()
+        text = infile.readlines()
         list = []
-        for n in t:
-            c = n.split(',')
-            list.append(c[column])
+        for a in text:
+            char = a.split(',')
+            list.append(char[column])
     return list
 
-print(get_csv_column('',0))
+#print(get_csv_column('',0))
 
 def fasta_seqs(file_name):
     """
@@ -181,7 +181,7 @@ def fasta_seqs(file_name):
     return sequence
 
 
-print(fasta_seqs('test_files/proper_fasta.fasta'))
+#print(fasta_seqs('test_files/proper_fasta.fasta'))
 
 def fasta_headers(file_name):
     """
@@ -231,6 +231,7 @@ def fastq_to_fasta(file_name, new_name=None):
     :param new_name: a string
     :return: None
     """
+
     return
 
 # Transcription and Translation
@@ -292,7 +293,7 @@ def translate(rna):
         else:
             string = string + s
     return string
-print(translate('CCCUAGAAAAGGGGGGGG'))
+#print(translate('CCCUAGAAAAGGGGGGGG'))
 
 def reading_frames(dna):
     """
@@ -301,4 +302,30 @@ def reading_frames(dna):
     :param dna: a string containing only the characters C, T, A, and G
     :return: a list of 6 strings containing only C, T, A, and G
     """
-    return
+    list = []
+    stra=''
+    strb=''
+    strc=''
+    a = dna[1:]
+    b = dna[2:]
+
+    list.append(dna)
+    for char in dna:
+        complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+        stra = stra + complement[char]
+    list.append(stra[::-1])
+    list.append(a)
+    for char in a:
+        complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+        strb = strb + complement[char]
+    list.append(strb[::-1])
+    list.append(b)
+    for char in b:
+        complement = {'A': 'T', 'T': 'A', 'C': 'G', 'G': 'C'}
+        strc = strc + complement[char]
+    list.append(strc[::-1])
+
+    return list
+
+
+#print(reading_frames('TAGGTACTAGC'))

@@ -325,7 +325,7 @@ def get_filesize(string):
     url = "http://www.ncbi.nlm.nih.gov/Traces/sra/?run={}&experimental=1&retmode=xml".format(string)
 
     t = ur.urlopen(url).read().decode()
-    print((re.search("size=\"(.*?)\"", t).group(1)))
+    print(float(re.search("size=\"(.*?)\"", t).group(1))/1000000000)
 
 #get_filesize('SRR3403834')
 
